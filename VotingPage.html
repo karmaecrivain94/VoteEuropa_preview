@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VoteEuropa</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Vollkorn" rel="stylesheet"> 
+</head>
+<body onload="VotingPage_Loaded()">
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="logoParent">
+        <img class="logo" src="img/Primary_Logo.svg" />
+    </div>
+    <h1><span style="color: #C73E12;">VOTE</span><span>EUROPA</span></h1>
+    <div class="view-table">
+        <div class="view-row">
+            <div class="selectionarea"></div>
+            <div class="votingarea">
+                <h2 id="qtitle">Question title</h2>
+                <h3 id="qsubtitle" >Question subtitle</h3>
+                <div id="tablewrapper">
+                    <table id="voteoptions">
+                        <tbody id="vo_tbody">
+                            <tr>
+                                <td class="VoteButton" id="qoption1">Option 1</td>
+                                <td class="VoteButton" id="qoption2">Option 2</td>
+                            </tr>
+                            <tr>
+                                <td class="VoteButton" id="qoption3">Option 3</td>
+                                <td class="VoteButton" id="qoption4">Option 4</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <a id="redditbutton" href="http://reddit.com/r/acteuropa">
+                    <img src="img/snoo.png" style="vertical-align:-50%;padding-right:6px" />
+                    DEBATE ON REDDIT
+                </a>
+                <a href="#logout" id="logoutbutton">Log out from [user]</a>
+            </div>
+        </div>
+        <a href="#archived" id="archivedbutton">&larr; View archived posts</a>
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
