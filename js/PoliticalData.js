@@ -1,4 +1,4 @@
-function Person(FirstName, LastName, DateOfBirth, Liberal_sc, Libertarian_sc, ProEU_sc, Bio, Beliefs, Party, Country) {
+function Person(FirstName, LastName, DateOfBirth, Liberal_sc, Libertarian_sc, ProEU_sc, Bio, Beliefs, Party, Country, Color) {
     this.FirstName = FirstName;
     this.LastName = LastName;
     this.DateOfBirth = DateOfBirth;
@@ -9,12 +9,13 @@ function Person(FirstName, LastName, DateOfBirth, Liberal_sc, Libertarian_sc, Pr
     this.Beliefs = Beliefs;
     this.Party = Party;
     this.Country = Country;
+    this.Color = Color;
 }
 
-var p1 = new Person("Emmanuel", "Macron", "", 80, 70, 80, "", "", "En Marche!", "FR");
-var p2 = new Person("Jean-Luc", "Mélenchon", "", 95, 10, 40, "", "", "La France Insoumise", "FR");
-var p3 = new Person("Marine", "Le Pen", "", 3, 10, 10, "", "", "La France Insoumise", "FR");
-var p4 = new Person("François", "Fillon", "", 10, 95, 60, "", "", "La France Insoumise", "FR");
+var p1 = new Person("Emmanuel", "Macron", "21/12/1977", 80, 70, 80, "", "", "En Marche!", "FR", "#377672");
+var p2 = new Person("Jean-Luc", "Mélenchon", "19/07/1951", 95, 10, 40, "", "", "La France Insoumise - GUE/NGL", "FR", "#b50000");
+var p3 = new Person("Marine", "Le Pen", "05/07/1968", 3, 10, 10, "", "", "FN", "FR", "#1f2c6f");
+var p4 = new Person("François", "Fillon", "04/03/1954", 10, 95, 60, "", "", "La France Insoumise", "FR", "#452887");
 var Candidates = [p1, p2, p3, p4];
 if (!Detector.webgl) Detector.addGetWebGLMessage();
 
@@ -25,8 +26,10 @@ var points_r = []; /* Point array to keep track of original location */
 var points = [];
 var textlabels = [];
 
-var WIDTH = window.innerWidth / 1.5,
-    HEIGHT = window.innerHeight / 1.5;
+var WIDTH = 528,
+    HEIGHT = 528,
+    LEFT = 0,
+    TOP = 0
 var dimension = 512;
 var perspective = true;
 init();
@@ -47,7 +50,7 @@ function init() {
     domEvents = new THREEx.DomEvents(camera, renderer.domElement);
 
     for (i = 0; i < Candidates.length; i++) {
-        AddPoint(Candidates[i].FirstName + " " + Candidates[i].LastName, Candidates[i].Libertarian_sc, Candidates[i].Liberal_sc, Candidates[i].ProEU_sc, scene);
+        AddPoint(Candidates[i].FirstName + " " + Candidates[i].LastName, Candidates[i].Libertarian_sc, Candidates[i].Liberal_sc, Candidates[i].ProEU_sc, scene, Candidates[i].Color);
     }
 
     var geometryCube = cube(dimension);
@@ -57,14 +60,14 @@ function init() {
     scene.add(frame);
 
     var loader = new THREE.TextureLoader();
-    loader.load('/VoteEuropa_preview/img/chart/Back.png', function (texture) {
+    loader.load('../img/chart/Back.png', function (texture) {
         var geometry = new THREE.PlaneGeometry(dimension, dimension);
         var material = new THREE.MeshBasicMaterial({ map: texture, overdraw: 0.5, transparent: true, depthWrite: false });
         back = new THREE.Mesh(geometry, material);
         back.position.z = -(dimension / 2);
         scene.add(back);
     });
-    loader.load('/VoteEuropa_preview/img/chart/Bottom.png', function (texture) {
+    loader.load('../img/chart/Bottom.png', function (texture) {
         var geometry = new THREE.PlaneGeometry(dimension, dimension);
         var material = new THREE.MeshBasicMaterial({ map: texture, overdraw: 0.5, transparent: true, depthWrite: false });
         bottom = new THREE.Mesh(geometry, material);
@@ -91,7 +94,11 @@ function init() {
     controls.addEventListener('end', orbitcheck);
     controls.addEventListener('change', moved);
     controls.target.set(0, 1, 0);
+    controls.enableZoom = false;
+    controls.enablePan = false;
     controls.update();
+
+    onWindowResize();
 
     window.addEventListener('resize', onWindowResize, false);
 }
@@ -101,10 +108,11 @@ function createTextLabel() {
     div.style.position = 'absolute';
     div.style.width = 100;
     div.style.height = 100;
-    div.style.color = "#C73E12";
-    div.innerHTML = "hi there!";
+    div.style.color = this.Color;
+    div.innerHTML = "";
     div.style.top = -1000;
     div.style.left = -1000;
+    div.style.transition = "100ms";
 
     var _this = this;
 
@@ -124,13 +132,13 @@ function createTextLabel() {
             }
 
             var coords2d = this.get2DCoords(this.position, _this.camera);
-            this.element.style.left = coords2d.x + 260 + 'px';
-            this.element.style.top = coords2d.y + 124 + 'px';
+            this.element.style.left = coords2d.x + 'px';
+            this.element.style.top = coords2d.y + 'px';
         },
         get2DCoords: function (position, camera) {
             var vector = position.project(camera);
-            vector.x = (vector.x + 1) / 2 * WIDTH;
-            vector.y = -(vector.y - 1) / 2 * HEIGHT;
+            vector.x = (vector.x + 1) / 2* WIDTH + LEFT + 12;
+            vector.y = -(vector.y - 1) / 2 * HEIGHT + TOP - 24;
             return vector;
         }
     };
@@ -209,11 +217,14 @@ function cross(size, x, y, z) {
 
 function onWindowResize() {
 
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = WIDTH / HEIGHT;
     camera.updateProjectionMatrix();
-
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
+    var cont = document.getElementById("container");
+    HEIGHT = cont.offsetHeight;
+    WIDTH = cont.offsetWidth;
+    LEFT = cont.offsetLeft;
+    TOP = cont.offsetTop;
+    renderer.setSize(WIDTH, HEIGHT);
 }
 
 function animate(time) {
@@ -227,11 +238,9 @@ function animate(time) {
 var checkforview = undefined;
 function render() {
     var time = Date.now() * 0.001;
-    for (var i = 0; i < points.length; i++) {
-        var object = points[i];
-    }
-    for (var i = 0; i < this.textlabels.length; i++) {
-        this.textlabels[i].updatePosition();
+
+    for (var i = 0; i < textlabels.length; i++) {
+        textlabels[i].updatePosition();
     }
     renderer.render(scene, camera);
 }
@@ -309,9 +318,9 @@ function moved() {
     }
 }
 var meshes = [];
-function AddPoint(label, x, y, z, scene) {
+function AddPoint(label, x, y, z, scene, color) {
     var material = new THREE.MeshBasicMaterial({
-        color: 0xC73E12, depthWrite: false
+        color: color, depthWrite: false
     });
     var geometry = new THREE.SphereGeometry(12, 48, 48);
     var mesh = new THREE.Mesh(geometry, material);
@@ -323,19 +332,30 @@ function AddPoint(label, x, y, z, scene) {
     points.push(mesh);
     points_r.push(mesh.clone());
     scene.add(mesh);
-
     var text = this.createTextLabel();
     text.setHTML(label);
     text.setParent(mesh);
+    text.element.style.color = color;
+    text.element.style.opacity = 0;
     this.textlabels.push(text);
     this.container.appendChild(text.element);
     domEvents.addEventListener(mesh, 'mouseover', function (event) {
         var geometryCube = cross(dimension, mesh.position.x, mesh.position.y, mesh.position.z);
         geometryCube.computeLineDistances();
-        crosshair = new THREE.LineSegments(geometryCube, new THREE.LineBasicMaterial({ color: 0xC73E12, linewidth: 1, depthWrite: false, depthTest: false, renderOrder: 3}));
+        crosshair = new THREE.LineSegments(geometryCube, new THREE.LineBasicMaterial({ color: color, linewidth: 1, depthWrite: false, depthTest: false, renderOrder: 3}));
         scene.add(crosshair);
+        text.element.style.opacity = 1;
     }, false)
     domEvents.addEventListener(mesh, 'mouseout', function (event) {
         scene.remove(crosshair);
+        text.element.style.opacity = 0;
     }, false)
 }
+
+//Sticky headers:
+jQuery(document).ready(function(){
+    $('#sticky-list').stickySectionHeaders({
+        stickyClass     : 'sticky',
+        headlineSelector: 'strong'
+});
+});
