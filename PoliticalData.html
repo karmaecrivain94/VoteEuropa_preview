@@ -1,4 +1,4 @@
-VoteEuropa_preview/<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -24,38 +24,192 @@ VoteEuropa_preview/<!DOCTYPE html>
         </ul>
     </nav>
     <div class="flexbox">
-    <select size="24" style="margin-top:6px;">
-        <option>Spain</option>
-        <option>France</option>
-        <option>Germany</option>
-        <option>Netherlands</option>
-        <option>Italy</option>
-     </select>
-    <select size="24">
-        <option class="optionheader" disabled="true">2017 Elections</option>
-        <option>Candidates</option>
-        <option>Parties</option>
-        <option class="optionheader" disabled="true">2017 Legislatives</option>
-        <option>Candidates</option>
-        <option>Parties</option>
-        <option class="optionheader" disabled="true">Parlement</option>
-        <option>Assemblée Nationale</option>
-        <option>Senate</option>
-        <option class="optionheader" disabled="true">Other</option>
-        <option>All parties</option>
-        <option>All politicians</option>
-    </select>
-    <div id="container" onclick="click"></div>
+        <div id="flexfilter">
+            <span class="sectionHeader">FEATURED</span><br/>
+            <div class="btndiv"><a class="plainbtn">French presidental election, 2017</a></div>
+            <div class="btndiv"><a class="plainbtn">Dutch general election, 2017</a></div>
+            <div class="btndiv"><a class="plainbtn">German federal election, 2017</a></div>
+            <div class="btndiv"><a class="plainbtn">Norwegian parlementary election, 2017</a></div>
+            <span class="sectionHeader">ALL DATA</span><br/>
+            <table class="filter">
+                <tbody>
+                    <tr>
+                        <td style="padding-right:12px;">Country: </td>
+                        <td>
+                            <select>
+                            <option>France</option>
+                            <option>Germany</option>
+                        </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right:12px;">Range:</td>
+                        <td>
+                            <select>
+                            <option>2017</option>
+                            <option>2016</option>
+                            <option>2015</option>
+                            <option>2014</option>
+                            <option>2013</option>
+                            <option>2012</option>
+                            <option>2011</option>
+                            <option>2010</option>
+                            <option>2009</option>
+                            <option>2008</option>
+                            <option>2007</option>
+                            <option>2006</option>
+                            <option>2005</option>
+                            <option>2004</option>
+                           </select>
+                           -
+                            <select>
+                            <option>2017</option>
+                            <option>2016</option>
+                            <option>2015</option>
+                            <option>2014</option>
+                            <option>2013</option>
+                            <option>2012</option>
+                            <option>2011</option>
+                            <option>2010</option>
+                            <option>2009</option>
+                            <option>2008</option>
+                            <option>2007</option>
+                            <option>2006</option>
+                            <option>2005</option>
+                            <option>2004</option>
+                           </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div id="sticky-list-cont">
+            <div id="sticky-list">
+                <ul>
+                    <li>
+                        <strong>2017 General Elections</strong>
+                        <ul>
+                            <li class="listitem">Candidates</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>2017 Parlementary Elections</strong>
+                        <ul>
+                            <li class="listitem">Candidates</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Government</strong>
+                        <ul>
+                            <li class="listitem">Bernard Cazeneuve I (Since December 2016)</li>
+                            <li class="listitem">Manuel Valls II (August 2014 - December 2016)</li>
+                            <li class="listitem">Manuel Valls I (March 2014 - August 2014)</li>
+                            <li class="listitem">Jean-Marc Ayrault II (June 2012 - March 2014)</li>
+                            <li class="listitem">Jean-Marc Ayrault I (May 2012 - June 2012)</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Parlement (XIV)</strong>
+                        <ul>
+                            <li class="listitem">National Assembly</li>
+                            <li class="listitem">Senate</li>
+                            <li style="height:20px;width:1px;"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        <div id="container" onclick="click"></div>
     </div>
+    <div class="center">
+        <span class="sectionHeader">SELECTED DATA</span>
+        <div class="datalist">
+            <div class="profile"><table>
+                    <tbody>
+                        <tr>
+                            <td valign="top">
+                                <div class="circular--portrait">
+                                    <img src="http://img-3.journaldesfemmes.com/72DCvBHHr_uHU_yJQ5ej7urJuVM=/305x/smart/image-cms/10219948.jpg" />
+                                </div>
+                            </td>
+                            <td class="profilebtn">
+                                <h3 class="txt_name">Emmanuel Macron</h3>
+                                <span class="txt_birth">21/12/1977 (39)</span>
+                                <h5 class="txt_party">En Marche!</h5>
+                                <a>View profile</a>
+                            </td>
+                        </tr>
+                    </tbody>
+            </table></div>
+            <div class="profile"><table>
+                    <tbody>
+                        <tr>
+                            <td valign="top">
+                                <div class="circular--portrait">
+                                    <img src="http://www.vegactu.com/wp-content/uploads/2016/03/M%C3%A9lenchon.jpg" />
+                                </div>
+                            </td>
+                            <td class="profilebtn">
+                                <h3 class="txt_name">Jean-Luc Mélenchon</h3>
+                                <span class="txt_birth">19/07/1951 (65)</span>
+                                <h5 class="txt_party">La France Insoumise - GUE/NGL</h5>
+                                <h6>MEP Since 2009</h6>
+                                <a>View profile</a>
+                            </td>
+                        </tr>
+                    </tbody>
+            </table></div>
+            <div class="profile"><table>
+                    <tbody>
+                        <tr>
+                            <td valign="top">
+                                <div class="circular--portrait">
+                                    <img src="http://i.dailymail.co.uk/i/pix/2016/06/03/20/34E615F600000578-3624382-image-a-9_1464981474143.jpg" />
+                                </div>
+                            </td>
+                            <td class="profilebtn">
+                                <h3 class="txt_name">Marine Le Pen</h3>
+                                <span class="txt_birth">05/07/1968 (48)</span>
+                                <h5 class="txt_party">Front National - AEL/MENL</h5>
+                                <h6>MEP since 2004</h6>
+                                <a>View profile</a>
+                            </td>
+                        </tr>
+                    </tbody>
+            </table></div>
+            <div class="profile"><table>
+                    <tbody>
+                        <tr>
+                            <td valign="top">
+                                <div class="circular--portrait">
+                                    <img src="http://www.brain-magazine.fr/m/posts/32343/originals/ppr%20fillon.jpg" />
+                                </div>
+                            </td>
+                            <td class="profilebtn">
+                                <h3 class="txt_name">François Fillon</h3>
+                                <span class="txt_birth">04/03/1954 (63)</span>
+                                <h5 class="txt_party">Les Républicains GUE/NGL</h5>
+                                <h6>MFP since 2012</h6>
+                                <a>View profile</a>
+                            </td>
+                        </tr>
+                    </tbody>
+            </table></div>
+        </div>
+    </div>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')
+    </script>
+    <script src="js/plugins.js"></script>
     <script src="js/3js/3xdom.js"></script>
     <script src="js/3js/three.min.js"></script>
     <script src="js/3js/tween.js"></script>
-    <script src="js/3js/geometries/ConvexGeometry.js"></script>
     <script src="js/3js/controls/OrbitControls.js"></script>
     <script src="js/3js/Detector.js"></script>
     <script src="js/3js/libs/stats.min.js"></script>
     <script src="js/PoliticalData.js"></script>
-
 </body>
 
 </html>
