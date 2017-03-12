@@ -60,14 +60,14 @@ function init() {
     scene.add(frame);
 
     var loader = new THREE.TextureLoader();
-    loader.load('../img/chart/Back.png', function (texture) {
+    loader.load('https://karmaecrivain94.github.io/VoteEuropa_preview/img/chart/Back.png', function (texture) {
         var geometry = new THREE.PlaneGeometry(dimension, dimension);
         var material = new THREE.MeshBasicMaterial({ map: texture, overdraw: 0.5, transparent: true, depthWrite: false });
         back = new THREE.Mesh(geometry, material);
         back.position.z = -(dimension / 2);
         scene.add(back);
     });
-    loader.load('../img/chart/Bottom.png', function (texture) {
+    loader.load('https://karmaecrivain94.github.io/VoteEuropa_preview/img/chart/Bottom.png', function (texture) {
         var geometry = new THREE.PlaneGeometry(dimension, dimension);
         var material = new THREE.MeshBasicMaterial({ map: texture, overdraw: 0.5, transparent: true, depthWrite: false });
         bottom = new THREE.Mesh(geometry, material);
