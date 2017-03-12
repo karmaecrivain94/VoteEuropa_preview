@@ -21,8 +21,8 @@ textarea {
 }
 body {
     background-color: #EAEAEA;
-    position:relative;
     line-height: 2em;
+    width:100%;
 }
 #navcont {
     background-color: #002F55;
@@ -79,16 +79,16 @@ a{
     color: black;
     opacity: 0.34;
     margin: 0px;
-    transition: opacity 200ms;
     line-height:1.25em;
+    transition: 200ms;
+    cursor:pointer;
 }
-a:hover{ opacity:0.6; }
+a:hover{ opacity:0.6;}
 a:active{ opacity:0.8; }
-a:focus { outline: 0; }
 
 h1 {
+    font-family: Montserrat, sans-serif;
     margin: 0px;
-    color:black;
 }
 h2 {
     margin: 22px 0px 8px ;
@@ -105,7 +105,11 @@ h3 {
     margin: 0px;
     color: black;
 }
-
+h6{
+    font-size:0.8em;
+    margin:0px;
+    line-height:12px;
+}
 /* POLITICAL DATA PAGE */
 .option {
     opacity: 0.8;
@@ -116,17 +120,181 @@ h3 {
     opacity:1;
 }
 select:not(:checked) {
-   color: gray;
+   color: #002F55;
 }
-select {
+select{
     background-color: #eaeaea;
     border-style: none;
-    overflow-y: auto;
 }
 .flexbox{
+    margin: 0 auto;
     display:flex;
-    align-items: stretch;
-    align-content: center;
+    justify-content: center;
+    flex-wrap:wrap;
+}
+.sectionHeader{
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
+    font-size: 1.25em;
+    color: #C73E12;
+    display: inline-block;
+    padding-top:8px;
+}
+.plainbtn{
+    font-family: Vollkorn, serif;
+    opacity: 1;
+    color: #002F55;
+    cursor:pointer;
+    transition:200ms;
+}
+.plainbtn:hover{opacity:0.75;}
+.plainbtn:active{opacity:0.4;}
+.btndiv{ margin-top:-8px;}
+
+.filter{
+    border-collapse: collapse;
+}
+.filter>tbody>tr>td{
+    line-height:20px;
+}
+
+/*Data list */
+#flexfilter{
+     flex-grow:0;
+     flex-shrink:3;
+     flex-basis: 320px;
+     padding-left:12px;
+}
+#container{
+    flex: 2 1 528px;
+    max-width:528px;
+    max-height:528px;
+}
+#sticky-list  {
+  height:256px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Data list */
+#sticky-list-cont{
+  border-color: #7f97aa;
+  border-style:solid;
+  border-width:1px;
+  padding-left:18px;
+  margin-top:8px;
+}
+#sticky-list > ul {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /*This is just to a fix a very odd glitch when you're scrolled down */
+  padding-bottom:2px;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+li {
+    font-size:0.9em;
+    line-height:0px;
+}
+.listitem{
+    margin-top:12px;
+    line-height: 12px;
+    opacity:0.6;
+    cursor:pointer;
+    color:#002F55;
+    transition: 200ms;
+}
+.listitem:hover{ opacity:0.75;}
+.listitem:active{ opacity:1; transform: translateX(4px)}
+/* Section headers */
+#sticky-list > ul > li strong {
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
+    font-size: 1em;
+    text-transform: uppercase;
+    color: #002F55;
+    background: #EAEAEA;
+    line-height:16px;
+    box-sizing: border-box;
+    display:inline-block;
+    padding-top:12px;
+    width:100%;
+    z-index: 100;
+}
+#sticky-list > ul strong:after {
+    content:' ';
+    display:block;
+    border:0.5px solid #002F55;
+    margin: 0px 60px 0px 0px;
+    opacity: 0.2;
+    background: #EAEAEA;
+ }
+/* Section headers when "sticky" */
+#sticky-list > ul > li.sticky strong {
+  position: absolute;
+  top:0;
+}
+
+/* SELECTED DATA LIST */
+.datalist{
+    display:flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+}
+.profile{
+    padding: 12px;
+    flex-shrink:0;
+    flex-grow: 2;
+    flex-basis:300px;
+    width:auto;
+    transition:100ms;
+}
+.profile:hover{
+    background-color: #F2F2F2;
+}
+.center{
+    max-width:854px;
+    margin:auto;
+    padding-left:12px;
+}
+.circular--portrait {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.circular--portrait img {
+  width: 100%;
+  height: auto;
+}
+.txt_name{
+    color:#C73E12;
+    margin:0;
+    line-height:12px;
+    display:block;
+}
+.txt_birth{
+    line-height:28px;
+    display:block;
+}
+.txt_party{
+    opacity:0.75;
+    font-family: Montserrat, sans-serif;
+    text-transform: uppercase;
+    margin: 0;
+    line-height:24px;
+    display:block;
+}
+.profilebtn{
+    padding-top:8px;
+    padding-left:12px;
+    padding-right:12px;
 }
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
